@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SIMPLE CALCULATOR</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'poppins', sans-serif;
+        }
+
+        body {
+            width: 100%;
+            width: 100vh;
+            background-color: burlywood;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .calculator {
+            border: 10px solid maroon;
+            background:linear-gradient(10deg,powderblue,powderblue);
+            padding: 20px;
+            margin-top: 87px;
+            margin-left: 200px;
+            margin-right: 100px;
+            border-radius: 70px;
+            box-shadow: 0px 3px 15px red(113, 115, 119, 0.5);
+        }
+
+        input {
+            width: 320px;
+            border: none;
+            padding: 24px;
+            margin-left: 10px;
+            margin-top: 20px;
+            background: transparent;
+            box-shadow: 0px 3px 15px rgba(84, 84, 84, 0.1);
+            font-size: 40px;
+            text-align: right;
+            cursor: pointer;
+            color: black;
+            
+        }
+
+        input::placeholder {
+            color: darkblue;
+        }
+
+        button {
+            border: none;
+            width: 60px;
+            height: 60px;
+            margin: 10px;
+            border-radius: 50%;
+            background: transparent;
+            color:darkblue;
+            font-size: 30px;
+            box-shadow: -8px -8px 15px burlywood(255, 255, 255, 0.1);
+            cursor: pointer;
+        }
+
+        .equalBtn {
+            background-color:deeppink;
+        }
+        .operator {
+            color:deeppink;
+            font-size: 25px;
+        }
+    </style>
+<body>
+    <div class="calculator">
+        <input type="text" id="inputbox" placeholder="0" />
+
+        <div>
+            <button class="button operator" onclick="clearInput()">AC</button>
+            <button class="button operator" onclick="deleteLastCharacter()">DEL</button>
+            <button class="button operator" onclick="appendOperator('%')">%</button>
+            <button class="button operator" onclick="appendOperator('/')">/</button>
+        </div>
+
+        <div>
+            <button class="button" onclick="appendDigit('7')">7</button>
+            <button class="button" onclick="appendDigit('8')">8</button>
+            <button class="button" onclick="appendDigit('9')">9</button>
+            <button class="button operator" onclick="appendOperator('*')">*</button>
+        </div>
+
+        <div>
+            <button class="button" onclick="appendDigit('4')">4</button>
+            <button class="button" onclick="appendDigit('5')">5</button>
+            <button class="button" onclick="appendDigit('6')">6</button>
+            <button class="button operator" onclick="appendOperator('-')">-</button>
+        </div>
+
+        <div>
+            <button class="button" onclick="appendDigit('1')">1</button>
+            <button class="button" onclick="appendDigit('2')">2</button>
+            <button class="button" onclick="appendDigit('3')">3</button>
+            <button class="button operator" onclick="appendOperator('+')">+</button>
+        </div>
+
+        <div>
+            <button class="button" onclick="appendDigit('00')">00</button>
+            <button class="button" onclick="appendDigit('0')">0</button>
+            <button class="button" onclick="appendDecimal('.')">.</button>
+            <button class="button equalBtn" onclick="calculateResult()">=</button>
+        </div>
+    </div>
+    <script>
+        let input = document.getElementById('inputbox');
+
+        function clearInput() {
+            input.value = '';
+        }
+
+        function deleteLastCharacter() {
+            input.value = input.value.slice(0, -1);
+        }
+
+        function appendDigit(digit) {
+            input.value += digit;
+        }
+
+        function appendOperator(operator) {
+            input.value += ' ' + operator + ' ';
+        }
+
+        function appendDecimal() {
+            if (input.value.indexOf('.') === -1) {
+                input.value += '.';
+            }
+        }
+
+        function calculateResult() {
+            try {
+                input.value = eval(input.value);
+            } catch (error) {
+                input.value = 'Error';
+            }
+        }
+    </script>
+</body>
+
+</html>
